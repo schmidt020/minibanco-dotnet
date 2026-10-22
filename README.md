@@ -77,6 +77,71 @@ A pontuação máxima é o total de transações multiplicado por 10.
 | 60% a 89% | Conta em Atenção | Contato da gerência para orientação financeira e revisão de tarifas |
 | 0% a 59% | Conta em Risco | Bloquear aumento de limite e abrir análise de crédito |
 
+## Exemplo de execução
+
+Cenário usado: uma Conta Corrente (Ana Souza, saldo inicial de R$ 1000,00 e limite de R$ 500,00) e uma Conta Poupança (Bia Lima, saldo inicial de R$ 2000,00 e rendimento de 0,5% ao mês), com as movimentações cadastradas pelo menu e o fechamento mensal aplicado uma vez. Saída da opção 4 (Exibir Relatório das Contas):
+
+```
+====================================================================
+        MINIBANCO .NET - MOTOR DE GESTÃO DE CONTAS
+====================================================================
+
+[1/2] PROCESSANDO CONTA
+--------------------------------------------------------------------
+> DADOS DA CONTA:
+  - Tipo: Conta Corrente
+  - Titular: Ana Souza | Conta: 1001
+  - Atributo Específico: Limite Cheque Especial: R$ 500,00
+  - Saldo Atual: R$ -310,00
+
+> MOVIMENTAÇÕES REGISTRADAS (5 TRANSAÇÕES):
+  [OK] Salário ---------------------- Deposito: R$ 2000,00 (10 pts)
+  [OK] Transferência recebida ------- Deposito: R$ 300,00 (10 pts)
+  [ ! ] Saque ------------------------ Saque: R$ 800,00 (5 pts)
+  [ ! ] Saque ------------------------ Saque: R$ 2800,00 (5 pts)
+  [ X ] Tarifa de manutenção ---------- Tarifa: R$ 10,00 (0 pts)
+
+> RESUMO DA PONTUAÇÃO:
+  - Pontuação Atingida: 30 de 50 pontos possíveis
+  - Índice de Saúde: 60,0%
+  - Classificação Final: [ CONTA EM ATENÇÃO ]
+  - Ação Corporativa: Contato da gerência para orientação financeira e revisão de tarifas.
+
+> RELATÓRIO DE PENDÊNCIAS E RECOMENDAÇÕES DA GERÊNCIA:
+  🔴 ITENS CRÍTICOS (TARIFAS):
+    - Tarifa de manutenção: Avaliar isenção ou migração para pacote de serviços.
+
+  🟡 ITENS DE ATENÇÃO (SAQUES):
+    - Saque de R$ 2800,00: Conta usando limite do cheque especial. Entrar em contato com o cliente.
+--------------------------------------------------------------------
+
+[2/2] PROCESSANDO CONTA
+--------------------------------------------------------------------
+> DADOS DA CONTA:
+  - Tipo: Conta Poupança
+  - Titular: Bia Lima | Conta: 2001
+  - Atributo Específico: Rendimento: 0,5% ao mês | Aniversário: dia 10
+  - Saldo Atual: R$ 2814,00
+
+> MOVIMENTAÇÕES REGISTRADAS (3 TRANSAÇÕES):
+  [OK] Depósito em dinheiro --------- Deposito: R$ 500,00 (10 pts)
+  [OK] Transferência recebida ------- Deposito: R$ 300,00 (10 pts)
+  [OK] Rendimento mensal ------------ Deposito: R$ 14,00 (10 pts)
+
+> RESUMO DA PONTUAÇÃO:
+  - Pontuação Atingida: 30 de 30 pontos possíveis
+  - Índice de Saúde: 100,0%
+  - Classificação Final: [ CONTA SAUDÁVEL ]
+  - Ação Corporativa: Oferecer investimentos e avaliar aumento de limite.
+
+> RELATÓRIO DE PENDÊNCIAS E RECOMENDAÇÕES DA GERÊNCIA:
+  🟢 Nenhuma pendência identificada. Oferecer produtos de investimento ao cliente.
+--------------------------------------------------------------------
+
+====================================================================
+        FIM DO PROCESSAMENTO DE CONTAS
+====================================================================
+```
 ## Tratamento de exceções
 
 O menu trata os erros sem encerrar o programa:
