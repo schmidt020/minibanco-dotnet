@@ -15,7 +15,7 @@ Aplicação de console em C# que gerencia contas bancárias de diferentes tipos,
 Pré-requisito: .NET SDK instalado.
 
 ```
-git clone <URL-DO-REPOSITORIO>
+git clone https://github.com/schmidt020/minibanco-dotnet.git
 cd minibanco-dotnet
 dotnet run --project src/MiniBanco.ConsoleApp
 ```
