@@ -103,8 +103,45 @@ public static class MotorAnalise
         }
 
         return encontradas;
+        
     }
+      public static List<Transacao> ListarSaquesComChequeEspecial(Conta conta)
+    {
+        decimal saldo = conta.Saldo;
 
+        foreach (Transacao transacao in conta.Extrato)
+        {
+            if (transacao.Tipo == "Deposito")
+            {
+                saldo -= transacao.Valor;
+            }
+            else
+            {
+                saldo += transacao.Valor;
+            }
+        }
+
+        List<Transacao> encontradas = new List<Transacao>();
+
+        foreach (Transacao transacao in conta.Extrato)
+        {
+            if (transacao.Tipo == "Deposito")
+            {
+                saldo += transacao.Valor;
+            }
+            else
+            {
+                saldo -= transacao.Valor;
+
+                if (transacao.Tipo == "Saque" && saldo < 0)
+                {
+                    encontradas.Add(transacao);
+                }
+            }
+        }
+
+        return encontradas;
+    }
     public static List<string> GerarRecomendacoes(Conta conta)
     {
         List<string> recomendacoes = new List<string>();

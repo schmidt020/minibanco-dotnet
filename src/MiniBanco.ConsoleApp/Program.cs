@@ -295,19 +295,14 @@ public class Program
         ExibirPendencias(conta);
     }
 
-    private static void ExibirPendencias(Conta conta)
+       private static void ExibirPendencias(Conta conta)
     {
         List<Transacao> tarifas = MotorAnalise.ListarPorTipo(conta, "Tarifa");
-        List<Transacao> saques = MotorAnalise.ListarPorTipo(conta, "Saque");
-        List<string> recomendacoes = MotorAnalise.GerarRecomendacoes(conta);
+        List<Transacao> saques = MotorAnalise.ListarSaquesComChequeEspecial(conta);
 
         if (tarifas.Count == 0 && saques.Count == 0)
         {
-            foreach (string recomendacao in recomendacoes)
-            {
-                Console.WriteLine($"  🟢 {recomendacao}");
-            }
-
+            Console.WriteLine("  🟢 Nenhuma pendência identificada. Oferecer produtos de investimento ao cliente.");
             return;
         }
 
@@ -317,7 +312,7 @@ public class Program
 
             foreach (Transacao tarifa in tarifas)
             {
-                Console.WriteLine($"    - {tarifa.Descricao} (R$ {tarifa.Valor:F2}): avaliar isenção ou renegociação com o cliente.");
+                Console.WriteLine($"    - {tarifa.Descricao}: Avaliar isenção ou migração para pacote de serviços.");
             }
 
             Console.WriteLine();
@@ -329,17 +324,8 @@ public class Program
 
             foreach (Transacao saque in saques)
             {
-                Console.WriteLine($"    - Saque de R$ {saque.Valor:F2}: acompanhar a retirada.");
+                Console.WriteLine($"    - Saque de R$ {saque.Valor:F2}: Conta usando limite do cheque especial. Entrar em contato com o cliente.");
             }
-
-            Console.WriteLine();
-        }
-
-        Console.WriteLine("  RECOMENDAÇÕES DA GERÊNCIA:");
-
-        foreach (string recomendacao in recomendacoes)
-        {
-            Console.WriteLine($"    - {recomendacao}");
         }
     }
 
